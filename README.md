@@ -101,7 +101,7 @@ Packaged the scanner into a Lambda function (`lambda_function.py`) with its own 
 
 - The S3 public access check flags any bucket without full block-public-access enabled, regardless of whether a public policy is actually attached. This means it can report a bucket as "failing" even if nothing is currently exposed, it's measuring hardening posture, not just active exposure. A more advanced version would separate "not hardened" from "actively public" as different severities.
 - RDS and password policy checks return a clean PASS on accounts with no RDS instances or no custom password policy in place. This is correct behavior (avoids false failures on N/A resources) but worth noting when interpreting a 100% RDS score, it may just mean nothing exists to fail.
-- PCI-DSS requirement numbering referenced here follows v4.0.
+- PCI-DSS requirement numbering referenced [here](https://listings.pcisecuritystandards.org/documents/PCIDSS_QRGv3_1.pdf).
 
 ---
 
