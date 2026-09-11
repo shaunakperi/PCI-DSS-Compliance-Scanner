@@ -4,7 +4,7 @@ A Python-based tool that scans an AWS environment against 10 PCI-DSS-inspired se
 
 Each check maps to a real PCI-DSS requirement number, and the tool was built and tested against intentionally misconfigured AWS resources to verify it catches real-world failures, not just theoretical ones.
 
-<!-- IMAGE: HTML compliance report screenshot (the polished one with summary cards) -->
+![PCI-DSS compliance report dashboard](screenshots/html-compliance-report.png)
 
 ---
 
@@ -61,11 +61,15 @@ Created a dedicated IAM user (`pcidss-scanner-admin`) instead of working as root
 
 CloudTrail and VPC flow logs were left disabled on purpose, giving the scanner a genuine "before" state to detect.
 
-<!-- IMAGE: IAM users list (pcidss-scanner-admin) -->
-<!-- IMAGE: S3 permissions overview showing "Block all public access: Off" -->
-<!-- IMAGE: S3 bucket policy JSON (public read) -->
-<!-- IMAGE: Security group inbound rules (SSH open to 0.0.0.0/0) -->
-<!-- IMAGE: EBS volume details showing "Not encrypted" -->
+![IAM user created for scanner](screenshots/Screenshot_1.jpg)
+ 
+![S3 public access block disabled](screenshots/Screenshot_2.jpg)
+ 
+![S3 bucket policy allowing public read](screenshots/Screenshot_3.jpg)
+ 
+![Security group with SSH open to 0.0.0.0/0](screenshots/Screenshot_4.jpg)
+ 
+![EBS volume not encrypted](screenshots/Screenshot_5.jpg)
 
 ### Phase 2: Control Checks
 
@@ -73,7 +77,7 @@ Wrote all 10 control functions in `checks.py` using boto3. Each function queries
 
 Notable finding during this phase: the S3 encryption check initially "passed" unexpectedly, it turned out AWS enables SSE-S3 encryption by default on all new buckets since January 2023, so the check was working correctly, my assumption about the test setup was just outdated. Kept as a documented nuance rather than treated as a bug.
 
-<!-- IMAGE: Terminal output of all 10 checks running in checks.py -->
+![All 10 control checks running in checks.py](screenshots/Screenshot_16.jpg)
 
 ### Phase 3: Reporting Layer
 
@@ -81,14 +85,15 @@ Built `main.py` to run all 10 checks together and aggregate results, plus a comp
 
 Caught and fixed a real bug here: the compliance percentage was calculating as 0% due to a parentheses error (`round(passed/total) * 100` instead of `round((passed/total) * 100)`), rounding the fraction to a whole number before multiplying instead of after.
 
-<!-- IMAGE: main.py terminal output with compliance summary block -->
+![main.py output with compliance summary](screenshots/Screenshot_17.jpg)
 
 ### Phase 4: Automation (Lambda + EventBridge)
 
 Packaged the scanner into a Lambda function (`lambda_function.py`) with its own least-privilege IAM role, granting only the specific read permissions each check needs plus write access to the report bucket, no admin-level access. Deployed via AWS CLI, tested with a manual invocation to confirm the full pipeline (scan → report → S3 upload) worked end to end, then wired it to an EventBridge rule running on a 1-day fixed-rate schedule.
 
-<!-- IMAGE: Lambda invoke + S3 upload confirmation (terminal) -->
-<!-- IMAGE: EventBridge rule review page showing schedule + target -->
+![Lambda invoke and S3 upload confirmation](screenshots/Screenshot_18.jpg)
+ 
+![EventBridge schedule review page](screenshots/Screenshot_19.jpg)
 
 
 
