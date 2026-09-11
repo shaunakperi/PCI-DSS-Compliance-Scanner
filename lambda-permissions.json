@@ -1,0 +1,36 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketPolicyStatus",
+        "s3:GetPublicAccessBlock",
+        "s3:GetEncryptionConfiguration",
+        "ec2:DescribeVolumes",
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeFlowLogs",
+        "iam:ListUsers",
+        "iam:ListMFADevices",
+        "iam:ListAccessKeys",
+        "iam:GetAccountPasswordPolicy",
+        "rds:DescribeDBInstances",
+        "cloudtrail:DescribeTrails",
+        "cloudtrail:GetTrailStatus",
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::pcidss-reports-sp-2026/*"
+    }
+  ]
+}

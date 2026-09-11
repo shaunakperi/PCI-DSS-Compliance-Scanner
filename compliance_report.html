@@ -1,0 +1,187 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PCI-DSS Compliance Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 40px;
+                background-color: #f4f4f4;
+                color: #222;
+            }
+            h1 {
+                color: #1a1a2e;
+            }
+            .meta {
+                color: #555;
+                margin-bottom: 20px;
+            }
+            .summary {
+                display: flex;
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+            .summary-box {
+                background: white;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                text-align: center;
+                flex: 1;
+            }
+            .summary-box h2 {
+                margin: 0;
+                font-size: 32px;
+            }
+            .summary-box p {
+                margin: 5px 0 0;
+                color: #666;
+            }
+            .score {
+                color: #e74c3c;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background: white;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            th, td {
+                text-align: left;
+                padding: 12px 15px;
+                border-bottom: 1px solid #eee;
+            }
+            th {
+                background-color: #1a1a2e;
+                color: white;
+            }
+            tr.fail {
+                background-color: #fdecea;
+            }
+            tr.pass {
+                background-color: #eafaf1;
+            }
+            .status-badge {
+                font-weight: bold;
+            }
+            tr.fail .status-badge {
+                color: #e74c3c;
+            }
+            tr.pass .status-badge {
+                color: #27ae60;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>PCI-DSS Compliance Report</h1>
+        <p class="meta">Generated: 2026-09-08 22:25:39</p>
+
+        <div class="summary">
+            <div class="summary-box">
+                <h2>10</h2>
+                <p>Total Checks</p>
+            </div>
+            <div class="summary-box">
+                <h2 style="color:#27ae60;">3</h2>
+                <p>Passed</p>
+            </div>
+            <div class="summary-box">
+                <h2 style="color:#e74c3c;">7</h2>
+                <p>Failed</p>
+            </div>
+            <div class="summary-box">
+                <h2 class="score">30%</h2>
+                <p>Compliance Score</p>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>Status</th>
+                    <th>Detail</th>
+                    <th>PCI-DSS Requirement</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr class="fail">
+            <td>pcidss-scanner-test-sp-2026</td>
+            <td class="status-badge">FAIL</td>
+            <td>Public access block is not fully enabled</td>
+            <td>1.3 / 7.1</td>
+        </tr>
+        
+        <tr class="pass">
+            <td>pcidss-scanner-test-sp-2026</td>
+            <td class="status-badge">PASS</td>
+            <td>Server-side encryption enabled</td>
+            <td>3.4</td>
+        </tr>
+        
+        <tr class="fail">
+            <td>vol-07f09c9466caf226f</td>
+            <td class="status-badge">FAIL</td>
+            <td>EBS volume is not encrypted</td>
+            <td>3.4</td>
+        </tr>
+        
+        <tr class="fail">
+            <td>pcidss-test-bad-sg (sg-051be9a31fd6eff14)</td>
+            <td class="status-badge">FAIL</td>
+            <td>Open to 0.0.0.0/0 on: SSH (22)</td>
+            <td>1.2 / 1.3</td>
+        </tr>
+        
+        <tr class="fail">
+            <td>pcidss-scanner-admin</td>
+            <td class="status-badge">FAIL</td>
+            <td>No MFA device enrolled</td>
+            <td>8.3</td>
+        </tr>
+        
+        <tr class="pass">
+            <td>pcidss-scanner-admin (..........WHYN)</td>
+            <td class="status-badge">PASS</td>
+            <td>Access key is 3 days old</td>
+            <td>8.2.4</td>
+        </tr>
+        
+        <tr class="pass">
+            <td>N/A</td>
+            <td class="status-badge">PASS</td>
+            <td>No RDS instances found in this account/region</td>
+            <td>3.4 / 1.3</td>
+        </tr>
+        
+        <tr class="fail">
+            <td>N/A</td>
+            <td class="status-badge">FAIL</td>
+            <td>No CloudTrail trails configured</td>
+            <td>10.1 / 10.2</td>
+        </tr>
+        
+        <tr class="fail">
+            <td>vpc-093f8955573aff6ce</td>
+            <td class="status-badge">FAIL</td>
+            <td>VPC flow logs are not enabled</td>
+            <td>10.1</td>
+        </tr>
+        
+        <tr class="fail">
+            <td>Account Password Policy</td>
+            <td class="status-badge">FAIL</td>
+            <td>No password policy configured for this account</td>
+            <td>8.2</td>
+        </tr>
+        
+            </tbody>
+        </table>
+    </body>
+    </html>
+    
