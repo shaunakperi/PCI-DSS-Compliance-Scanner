@@ -4,7 +4,7 @@ A Python-based tool that scans an AWS environment against 10 PCI-DSS-inspired se
 
 Each check maps to a real PCI-DSS requirement number, and the tool was built and tested against intentionally misconfigured AWS resources to verify it catches real-world failures, not just theoretical ones.
 
-![PCI-DSS compliance report dashboard](screenshots/html-compliance-report.png)
+![PCI-DSS compliance report dashboard](screenshots/Screenshot_20.png)
 
 ---
 
